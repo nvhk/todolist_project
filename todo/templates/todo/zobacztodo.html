@@ -1,0 +1,45 @@
+{% extends 'todo/base.html' %}
+{% block tresc %}
+
+<div class="container">
+    <h1 class="display-4">{{todo.title}}</h1>
+    <hr class="my-4">
+    <form method='POST'>
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endif %} 
+            <button type="submit" class="btn btn-primary">Edytuj</button>
+
+        </div>
+
+    </form>
+    
+    <form method='POST' action="{% url 'wykonanie' todo.id %}">
+        <div class="form-group">
+            {% csrf_token %}
+            <button id="wykonanie" type="submit" class="btn btn-primary">Wykonany</button>
+
+        </div>
+
+    </form>
+
+
+        <form method='POST' action="{% url 'usun' todo.id %}">
+        <div class="form-group">
+            {% csrf_token %}
+            <button id="usun" type="submit" class="btn btn-primary">Usun</button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'todo/base.html' %}
+
+{% block tresc %}
+<div class="container">
+    <h1 class="display-4">Rejestracja</h1>
+    <hr class="my-4">
+    <form method='POST'>
+        <div class="form-group">
+            {% csrf_token %}
+            {{ formularz_rejestacji.as_p }}
+
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endif %}
+            {% if sukces %}
+            <div class="alert alert-success" role="alert">
+                Zarejestrowano
+                <a href="{% url 'todosy' %}" class="btn btn-primary">Przejdz do listy</a>
+            </div>
+
+            {% else %}
+            <button type="submit" class="btn btn-primary">Rejestruj</button>
+
+            {% endif %}
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

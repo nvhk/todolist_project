@@ -1,0 +1,26 @@
+{% extends 'todo/base.html' %}
+{% block tresc %}
+
+<div class="container">
+    <h1 class="display-4">Logowanie</h1>
+    <hr class="my-4">
+    <form method='POST'>
+        <div class="form-group">
+            {% csrf_token %}
+            {{ formularz_logowania.as_p }}
+
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">Logowanie</button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
